@@ -10,7 +10,7 @@ class Unicorn
     end
 
     def say(message)
-        puts "*~* #{message}*~*"
+        "*~* #{message}*~*"
     end
 end
 
@@ -69,11 +69,11 @@ class Dragon
 end
 
 dragon1 = Dragon.new("Blaze", "Victory", "Red")
-p dragon1
+pp dragon1
 dragon1.eat
-p dragon1
+pp dragon1
 dragon1.eat(3)
-p dragon1
+pp dragon1
 
 #  Write a Hobbit class
 #  it should have a dynamic name attribute (string)
@@ -85,33 +85,23 @@ p dragon1
 #  it should have a has_ring attribute. If the Hobbit's name is "Frodo", true, if not, false.
 
 class Hobbit
-    def initialize(name, disposition, age = 0)
+    def initialize(name, disposition)
         @name = name
         @disposition = disposition
-        @age = age
-
-        @is_adult = false
-            if @age >= 33
-                @is_adult = true
-            end
-
+        @age = 0
         @is_old = false
-            if @age >= 101
-                @is_old = true
-            end
-
-        @has_ring = false
-            if @name.downcase == "frodo"
-                @has_ring = true
-            end 
+        @is_adult = false
+        @has_ring = true if @name.downcase == "frodo"
     end
 
     def celebrate_birthday
         @age += 1
+        @is_old = true if @age >= 101
+        @is_adult = true if @age >= 33
     end
 end
 
-hobbit1 = Hobbit.new("Frodo", "Inspired", 40)
-p hobbit1
-hobbit1.celebrate_birthday
-p hobbit1
+hobbit1 = Hobbit.new("Frodo", "Inspired")
+pp hobbit1
+100.times { hobbit1.celebrate_birthday }
+pp hobbit1
